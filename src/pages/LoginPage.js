@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { authContext } from "../providers/AuthProvider";
 
 function LoginPage() {
   const [empId, setEmpId] = useState("");
@@ -10,21 +11,25 @@ function LoginPage() {
   const [showError, setShowError] = useState(false);
   let navigate = useNavigate();
 
+  const { setAuthData } = useContext(authContext);
+
   const handleChange = (event) => {
     const newEmpId = event.target.value;
     setEmpId(newEmpId);
-    if (newEmpId.length < 3 && showError == false) {
+    if (newEmpId.length < 3 && showError === false) {
       setShowError(true);
-    } else if (newEmpId.length >= 3 && showError == true) {
+    } else if (newEmpId.length >= 3 && showError === true) {
       setShowError(false);
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const authData = { isAuth: true, empId: empId };
+    setAuthData(authData);
+    sessionStorage.setItem("auth", JSON.stringify(authData));
     setEmpId("");
-    navigate("/home");
-    //console.log("event", event);
+    navigate("/");
   };
   return (
     <div className="loginContainer">
