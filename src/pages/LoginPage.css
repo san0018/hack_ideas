@@ -1,0 +1,28 @@
+.loginContainer {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+}
+
+.container {
+  border: solid #1976d2;
+  border-radius: 20px;
+  background-color: white;
+  padding: 50px;
+}
+.container h2,
+p,
+span {
+  justify-content: center;
+  display: flex;
+  font-family: cursive;
+}
+
+.textField {
+  padding-bottom: 30px;
+}
+
+#outlined-basic {
+  height: 15px;
+}
