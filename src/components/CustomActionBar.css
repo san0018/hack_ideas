@@ -1,0 +1,7 @@
+.actionBarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 50px;
+  margin-top: 20px;
+}

@@ -8,7 +8,13 @@ import { authContext } from "../providers/AuthProvider";
 import Avatar from "@mui/material/Avatar";
 
 export default function Header() {
-  const { auth } = useContext(authContext);
+  const { auth, setAuthData } = useContext(authContext);
+
+  const handleLogout = () => {
+    const authData = { isAuth: false, empId: null };
+    setAuthData(authData);
+    sessionStorage.setItem("auth", null);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -21,7 +27,9 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Welcome,{auth.empId}
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" onClick={() => handleLogout()}>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

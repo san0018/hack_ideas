@@ -1,0 +1,17 @@
+.selectContainer {
+  padding-top: 20px;
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+}
+
+.containerTwo {
+  display: "flex";
+  flex-direction: column;
+}
+
+.errorStyle {
+  font-size: "12px";
+  color: #d32f2f;
+  font-family: cursive;
+}
