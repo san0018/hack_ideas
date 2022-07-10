@@ -5,15 +5,23 @@ import HomePage from "./pages/HomePage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { authContext } from "./providers/AuthProvider";
+import { hackDataContext } from "./providers/HackDataProvider";
 
 function App() {
   const { setAuthData, auth } = useContext(authContext);
-  console.log("auth in app.js", auth);
+  const { updateHackData } = useContext(hackDataContext);
+
   useEffect(() => {
     let sessionAuth = JSON.parse(sessionStorage.getItem("auth"));
-    //console.log("sessionauth", sessionAuth);
+
     if (sessionAuth != null) {
       setAuthData(sessionAuth);
+    }
+
+    let hackDataList = JSON.parse(localStorage.getItem("hackData"));
+    console.log("hackData in app .js", hackDataList);
+    if (hackDataList != null) {
+      updateHackData(hackDataList);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

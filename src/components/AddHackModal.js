@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -9,6 +9,7 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import ChipSelect from "./ChipSelect";
 import "./AddHackModel.css";
+import { hackDataContext } from "../providers/HackDataProvider";
 
 export default function AddHackModal() {
   const [open, setOpen] = useState(false);
@@ -18,6 +19,8 @@ export default function AddHackModal() {
   const [showTitleError, setShowTitleError] = useState(false);
   const [showTagError, setShowTagError] = React.useState(false);
   const [showDescriptionError, setShowDescriptionError] = useState(false);
+
+  const { updateHackData } = useContext(hackDataContext);
 
   const handleTitleChange = (event) => {
     const newTitle = event.target.value;
@@ -43,15 +46,19 @@ export default function AddHackModal() {
     setOpen(true);
   };
 
+  const closeModal = () => {
+    setOpen(false);
+    setTitle("");
+    setDescription("");
+    setTags([]);
+    setShowTitleError(false);
+    setShowDescriptionError(false);
+    setShowTagError(false);
+  };
+
   const handleClose = (event, reason) => {
     if (reason !== "backdropClick") {
-      setOpen(false);
-      setTitle("");
-      setDescription("");
-      setTags([]);
-      setShowTitleError(false);
-      setShowDescriptionError(false);
-      setShowTagError(false);
+      closeModal();
     }
   };
 
@@ -77,6 +84,21 @@ export default function AddHackModal() {
     } else {
       return false;
     }
+  };
+
+  const handleSubmit = () => {
+    const date = new Date();
+    let newHackData = {
+      id: date + title,
+      title: title,
+      description: description,
+      tags: tags,
+      isUpVoted: false,
+      upVoteCount: 0,
+      createdAt: date,
+    };
+    updateHackData(newHackData);
+    closeModal();
   };
 
   return (
@@ -161,7 +183,7 @@ export default function AddHackModal() {
           <Button
             variant="contained"
             disabled={isDisabled()}
-            onClick={handleClose}
+            onClick={handleSubmit}
           >
             Add
           </Button>
