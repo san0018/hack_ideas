@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -11,10 +11,14 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Fab from "@mui/material/Fab";
 import SortIcon from "@mui/icons-material/Sort";
+import { hackDataContext } from "../providers/HackDataProvider";
 
 export default function Sort() {
   const [open, setOpen] = React.useState(false);
   const [sortBy, setSortBy] = React.useState("");
+  const [displayedSort, setDisplayedSort] = React.useState("");
+
+  const { handleSort } = useContext(hackDataContext);
 
   const handleChange = (event) => {
     setSortBy(event.target.value);
@@ -30,10 +34,16 @@ export default function Sort() {
     }
   };
 
+  const handleSubmit = () => {
+    handleSort(sortBy);
+    setDisplayedSort(sortBy);
+    handleClose();
+  };
+
   const handleSortDisplay = () => {
-    if (sortBy.includes("Votes")) {
+    if (displayedSort.includes("Votes")) {
       return "Votes Count";
-    } else if (sortBy.includes("Created")) {
+    } else if (displayedSort.includes("Created")) {
       return "Created At";
     } else {
       return "Sort By";
@@ -79,7 +89,7 @@ export default function Sort() {
           <Button color="error" variant="contained" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="contained" onClick={handleClose}>
+          <Button variant="contained" onClick={handleSubmit}>
             Ok
           </Button>
         </DialogActions>

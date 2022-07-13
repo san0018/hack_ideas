@@ -64,6 +64,46 @@ const HackDataProvider = ({ children }) => {
     }
   };
 
+  const handleSort = (sortType) => {
+    if (sortType.includes("Votes")) {
+      //sort by votes
+      hackData.sort(compareVotes);
+      setHackData([...hackData]);
+    } else if (sortType.includes("Created")) {
+      //sort by created at
+      hackData.sort(compareCreatedAt);
+      setHackData([...hackData]);
+    } else {
+      //no sort
+      let hackDataList = JSON.parse(localStorage.getItem("hackData"));
+      if (hackDataList != null) {
+        retrieveHackData(hackDataList);
+      }
+    }
+  };
+
+  const compareVotes = (hackItem1, hackItem2) => {
+    if (hackItem1.upVoteCount < hackItem2.upVoteCount) {
+      return 1;
+    } else if (hackItem1.upVoteCount > hackItem2.upVoteCount) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+
+  const compareCreatedAt = (hackItem1, hackItem2) => {
+    const d1 = new Date(hackItem1.createdAt).getTime();
+    const d2 = new Date(hackItem2.createdAt).getTime();
+    if (d1 < d2) {
+      return 1;
+    } else if (d1 > d2) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+
   return (
     <hackDataContext.Provider
       value={{
@@ -72,6 +112,7 @@ const HackDataProvider = ({ children }) => {
         retrieveHackData,
         handleUpVotePress,
         hasEmployeeUpVoted,
+        handleSort,
       }}
     >
       {children}
