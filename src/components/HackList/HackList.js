@@ -9,7 +9,7 @@ const HackList = () => {
     <div className="listContainer">
       {hackData.length < 1 ? (
         <div className="noData">
-          <h1> Please add your innovative hack ideas !!</h1>
+          <h1>Please add your innovative hack ideas !!</h1>
         </div>
       ) : (
         <ul className="ulStyle">
