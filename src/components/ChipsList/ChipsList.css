@@ -1,0 +1,29 @@
+.ulStyleOne {
+  list-style-type: none;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.chipContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex: 1;
+  /* display: flex !important;
+    width: "100%" !important;
+    flex: 1 !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important; */
+}
+
+.listItemStyles {
+  margin: 5px;
+  /* display: flex;
+      width: "100%";
+      flex: 1;
+      flex-direction: row; */
+  /* background-color: green; */
+}

@@ -27,6 +27,8 @@ const names = [
   "Fullstack",
   "Data Structures",
   "Programming",
+  "Coding",
+  "Science",
 ];
 
 function getStyles(name, tags, theme) {

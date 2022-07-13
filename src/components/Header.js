@@ -16,7 +16,7 @@ export default function Header() {
     sessionStorage.setItem("auth", null);
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ width: "100%" }}>
       <AppBar position="static">
         <Toolbar>
           <div style={{ paddingRight: 10 }}>

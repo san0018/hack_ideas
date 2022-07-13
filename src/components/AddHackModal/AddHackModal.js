@@ -7,9 +7,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
-import ChipSelect from "./ChipSelect";
+import ChipSelect from "../ChipSelect";
 import "./AddHackModel.css";
-import { hackDataContext } from "../providers/HackDataProvider";
+import { hackDataContext } from "../../providers/HackDataProvider";
+import { authContext } from "../../providers/AuthProvider";
 
 export default function AddHackModal() {
   const [open, setOpen] = useState(false);
@@ -21,6 +22,7 @@ export default function AddHackModal() {
   const [showDescriptionError, setShowDescriptionError] = useState(false);
 
   const { updateHackData } = useContext(hackDataContext);
+  const { auth } = useContext(authContext);
 
   const handleTitleChange = (event) => {
     const newTitle = event.target.value;
@@ -89,13 +91,14 @@ export default function AddHackModal() {
   const handleSubmit = () => {
     const date = new Date();
     let newHackData = {
-      id: date + title,
+      id: date + auth.empId,
       title: title,
       description: description,
       tags: tags,
-      isUpVoted: false,
+      upVotedBy: [],
       upVoteCount: 0,
       createdAt: date,
+      createdBy: auth.empId,
     };
     updateHackData(newHackData);
     closeModal();

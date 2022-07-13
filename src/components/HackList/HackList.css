@@ -1,0 +1,21 @@
+.listContainer {
+  display: flex;
+  height: "100%";
+  width: "100%";
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* justify-content: center;
+  align-items: flex-start; */
+  /* margin-top: 10px; */
+  margin-bottom: 20px;
+}
+
+.ulStyle {
+  list-style-type: none;
+}
+
+.listItemStyle {
+  margin-top: 20px;
+}

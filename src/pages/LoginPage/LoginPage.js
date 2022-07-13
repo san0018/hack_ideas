@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { authContext } from "../providers/AuthProvider";
+import { authContext } from "../../providers/AuthProvider";
 
 function LoginPage() {
   const [empId, setEmpId] = useState("");

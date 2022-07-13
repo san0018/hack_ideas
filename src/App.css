@@ -1,8 +1,18 @@
 .appContainer {
   background-color: #f2f2f2;
-  height: 100vh;
+  /* height: 100vh; */
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex: 1;
 }
 
-#root {
-  height: 100vh;
+html,
+body,
+#root,
+.App {
+  display: flex;
+  min-height: 100%;
+  width: 100%;
+  flex: 1;
 }
